@@ -2,7 +2,7 @@ from django.shortcuts import render
 import pandas as pd
 from .API import MyAPI
 
-data = pd.read_csv("E:\\temp\\car price\\django\\testproject\\predictor\\Car_datal.csv")
+data = pd.read_csv("Car_datal.csv")
 unique_car = list(data['Make'].unique())
 unique_car.sort()
 
