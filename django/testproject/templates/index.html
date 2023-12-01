@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car List</title>
+</head>
+<body>
+    <h1>Car List</h1>
+    <form method="post" action="{% url 'car_list' %}">
+        {% csrf_token %}
+        <label for="carSelect">Choose a car:</label>
+        <select id="carSelect" name="car" onchange="this.form.submit()">
+            {% for car in cars %}
+                <option value="{{ car }}" {% if car == selected_car %}selected{% endif %}>{{ car }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="modelSelect">Choose a model:</label>
+        <select id="modelSelect" name="model" onchange="this.form.submit()">
+            {% for model in models %}
+                <option value="{{ model }}" {% if model == selected_model %}selected{% endif %}>{{ model }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="year">Year:</label>
+        <input type="number" placeholder="enter year" id="year" name="yr" min="1950" max="2023" value="{{ selected_year }}" required>
+        <br>
+        <label for="engine-size">Engine size in cc:</label>
+        <input type="number" id="engine-size" name="eng" required value="{{ selected_eng }}">
+        <br>
+        <label for="seating-capacity">Seating capacity:</label>
+        <input type="number" id="seating-capacity" name="seat" min=1 max=7 required value="{{ selected_capacity }}">
+        <br>
+        <label for="fuel-tank">Fuel tank capacity in Litre:</label>
+        <input type="number" id="fuel-tank" name="fuel-tank_" required value="{{ selected_fuel_tank }}">
+        <br>
+        <label for="max-torque">Max torque:</label>
+        <input type="number" id="max-torque" name="torque" required value="{{ selected_torque }}">
+        <br>
+        <label for="max-power">Max power:</label>
+        <input type="number" id="max-power" name="power" required value="{{ selected_power }}">
+        <br>
+        <label for="kilometer">Kilometer driven:</label>
+        <input type="number" placeholder="enter kilometer driven" id="kilometer" name="km" required value="{{ selected_kilometer }}">
+        <br>
+        <label for="fuelType">Choose a fuel type:</label>
+        <select id="fuelType" name="fuel">
+            {% for fuel in fuel_type %}
+                <option value="{{ fuel }}" {% if fuel == selected_fuel %}selected{% endif %}>{{ fuel }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="transmissionType">Choose a transmission type:</label>
+        <select id="transmissionType" name="transmission">
+            {% for transmission in transmission_type %}
+                <option value="{{ transmission }}" {% if transmission == selected_transmission %}selected{% endif %}>{{ transmission }}</option>
+            {% endfor %}
+        </select>
+        <label for="colorType">Choose a color:</label>
+        <select id="colorType" name="color">
+            {% for color in color_type %}
+                <option value="{{ color }}" {% if color == selected_color %}selected{% endif %}>{{ color }}</option>
+            {% endfor %}
+        </select>
+        <label for="locationType">Choose a location:</label>
+        <select id="locationType" name="location">
+            {% for location in location_type %}
+                <option value="{{ location }}" {% if location == selected_location %}selected{% endif %}>{{ location }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="ownerType">Choose owner:</label>
+        <select id="ownerType" name="owner">
+            {% for owner in owner_type %}
+                <option value="{{ owner }}" {% if owner == selected_owner %}selected{% endif %}>{{ owner }}</option>
+            {% endfor %}
+        </select>
+        <label for="sellerType">Choose seller type:</label>
+        <select id="sellerType" name="seller">
+            {% for seller in seller_type %}
+                <option value="{{ seller }}" {% if seller == selected_seller %}selected{% endif %}>{{ seller }}</option>
+            {% endfor %}
+        </select>
+        <label for="drivetrainType">Choose drivetrain type:</label>
+        <select id="drivetrainType" name="drive">
+            {% for drive in drive_type %}
+                <option value="{{ drive }}" {% if drive == selected_drive %}selected{% endif %}>{{ drive }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <label for="additionalLabel">Price ₹ :</label>
+    <span id="additionalLabelValue">{{ dynamic_label_text }}</span>
+</body>
+</html>
